@@ -5,11 +5,16 @@ const clientSchema = z.object({
     name: z.string(),
     email: z.string().email(),
     number: z.string(),
+    created_at: z.date()
   
 })
 
 const clientSchemaRequest =  clientSchema.omit({
     id:true,
-   
+    created_at:true
 })
-export {clientSchema, clientSchemaRequest}
+const clientSchemaUpdate =  clientSchema.omit({
+    id:true
+   
+}).partial()
+export {clientSchema, clientSchemaRequest, clientSchemaUpdate}

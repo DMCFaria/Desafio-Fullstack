@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from "typeorm";
 
 @Entity("clients")
 class Client {
@@ -14,6 +14,8 @@ class Client {
     
     @Column({unique:true})
     number:string
- 
+    
+    @CreateDateColumn()
+    created_at:Date 
 }
 export {Client}

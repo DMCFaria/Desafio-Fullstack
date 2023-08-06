@@ -5,13 +5,16 @@ const contactsSchema = z.object({
     name: z.string(),
     email: z.string().email(),
     number: z.string(),
-    created_at: z.date()
-  
+    created_at: z.date(),
+    client_id: z.string(),
+    client:z.any()
 })
 
 const contactsSchemaRequest =  contactsSchema.omit({
     id:true,
-    created_at:true
+    created_at:true,
+    client:true
+
 })
 const contactsSchemaUpdate =  contactsSchema.omit({
     id:true

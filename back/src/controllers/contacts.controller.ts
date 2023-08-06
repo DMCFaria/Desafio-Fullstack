@@ -6,8 +6,6 @@ import { deleteContactsService } from "../services/Contacts.Services/deleteConta
 import { updateContactsService } from "../services/Contacts.Services/updateContacts.Service"
 
 const createContactsController = async (req:Request, res:Response)=>{
-    const {email, name, number}:TContactsRequest = req.body
-
     const newContacts = await createContactsService(req.body)
     return res.status(201).json(newContacts)
 }

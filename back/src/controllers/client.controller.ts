@@ -6,8 +6,6 @@ import { deleteClientService } from "../services/Clients.Services/deleteClient.S
 import { updateClientService } from "../services/Clients.Services/updateClient.Service"
 
 const createClientController = async (req:Request, res:Response)=>{
-    const {email, name, number}:TclientRequest = req.body
-
     const newClient = await createClientService(req.body)
     return res.status(201).json(newClient)
 }

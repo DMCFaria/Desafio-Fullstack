@@ -1,9 +1,9 @@
 import { Request, Response } from "express"
 import { TclientRequest, Tclient} from "../interfaces/client.interface"
-import { createClientService } from "../services/createClient.Service"
-import { listClientService } from "../services/listClient.Service"
-import { deleteClientService } from "../services/deleteClient.Service"
-import { updateClientService } from "../services/updateClient.Service"
+import { createClientService } from "../services/Clients.Services/createClient.Service"
+import { listClientService } from "../services/Clients.Services/listClient.Service"
+import { deleteClientService } from "../services/Clients.Services/deleteClient.Service"
+import { updateClientService } from "../services/Clients.Services/updateClient.Service"
 
 const createClientController = async (req:Request, res:Response)=>{
     const {email, name, number}:TclientRequest = req.body

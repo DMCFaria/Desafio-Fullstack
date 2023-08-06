@@ -1,8 +1,8 @@
 
-import { AppDataSource } from "../data-source";
-import { Client } from "../entities/client.entities";
-import { AppError } from "../errors/AppError";
-import { Tclient, TclientRequest } from "../interfaces/client.interface";
+import { AppDataSource } from "../../data-source";
+import { Client } from "../../entities/client.entities";
+import { AppError } from "../../errors/AppError";
+import { Tclient, TclientRequest } from "../../interfaces/client.interface";
 
 
 

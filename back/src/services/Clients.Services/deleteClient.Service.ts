@@ -1,7 +1,7 @@
 
-import { AppDataSource } from "../data-source";
-import { Client } from "../entities/client.entities";
-import { AppError } from "../errors/AppError";
+import { AppDataSource } from "../../data-source";
+import { Client } from "../../entities/client.entities";
+import { AppError } from "../../errors/AppError";
 
 
 const deleteClientService = async (clientId:string): Promise<void> =>{

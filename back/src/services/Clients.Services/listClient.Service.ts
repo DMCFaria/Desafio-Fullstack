@@ -1,5 +1,5 @@
-import { AppDataSource } from "../data-source"
-import { Client } from "../entities/client.entities"
+import { AppDataSource } from "../../data-source"
+import { Client } from "../../entities/client.entities"
 
 
 const listClientService = async (): Promise<any> => {

@@ -1,7 +1,13 @@
+import { STYLEDDASHBOARD } from "./style";
+import { Clients } from "../components/clients";
+
 export const Dashboard = () => {
   return (
-    <>
-      <div></div>
-    </>
+    <STYLEDDASHBOARD>
+      <button className="create">+ Cliente</button>
+      <div className="outside">
+        <Clients />
+      </div>
+    </STYLEDDASHBOARD>
   );
 };

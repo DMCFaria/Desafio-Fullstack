@@ -5,9 +5,11 @@ import { contactRoutes } from "./routes/contacts.routers";
 
 const app: Application = express();
 
+var cors = require('cors');
+app.use(cors())
 app.use(express.json());
-app.use("/clients",clientRoutes);
-app.use("/contacts",contactRoutes);
+app.use("/clients", clientRoutes);
+app.use("/contacts", contactRoutes);
 app.use(handleAppError)
 
 export default app

@@ -37,6 +37,14 @@ form{
     gap: 5px;
     flex-direction: column;
 }
+.button{
+  margin: 0;
+  padding: 2px;
+  cursor: pointer;
+  background-color:whitesmoke;
+  color: black;
+}
+
 
 `;
 

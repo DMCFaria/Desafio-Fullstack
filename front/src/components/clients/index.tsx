@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { STYLEDCLIENT, STYLEDUL } from "../../components/clients/style";
 import { Client } from "./@types";
-import {AddContactModal, ContactDeleteModal, ContactEditModal, CreateModal, DeleteModal, EditModal} from "../modal";
+import {AddContactModal, ContactDeleteModal, ContactEditModal, CreateModal, DeleteClients, DeleteModal, EditModal} from "../modal";
 
 export const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);
+  const [actualId, setActualId]= useState<any>()
   const [OpenCreateModal, setOpenCreateModal] = useState<boolean>(false);
   const [OpenEditModal, setOpenEditModal] = useState<boolean>(false);
   const [OpenDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
@@ -24,7 +25,7 @@ export const Clients = () => {
       }
     };
     getClients();
-  }, []);
+  }, [clients]);
 
   const renderClients = (clientsToRender: Client[]) =>
     clientsToRender.map((client) => (
@@ -43,9 +44,9 @@ export const Clients = () => {
             Registrado em: <span>{client.created_at}</span>
           </h2>
           <form>
-            <div className="button" onClick={()=> setOpenEditModal(!OpenEditModal)}>Editar</div>
-            <div className="button" onClick={()=> setOpenDeleteModal(!OpenDeleteModal)}>Apagar</div>
-            <div className="button" onClick={()=>setOpenAddContactModal(!OpenAddContactModal)}>+ Contato</div>
+            <div className="button" onClick={()=> setIdEditModal(client.id)}>Editar</div>
+            <div className="delete button" onClick={()=>setIdDeleteModal(client.id)}>Apagar</div>
+            <div className="button" onClick={()=>setIdAddContact(client.id)}>+ Contato</div>
           </form>
         </div>
         <h2>Contatos</h2>
@@ -65,22 +66,45 @@ export const Clients = () => {
               Registrado em: <span>{contact.created_at}</span>
             </h2>
             <form>
-              <div className="button" onClick={()=>setContactOpenEditModal(!ContactOpenEditModal)}>Editar</div >
-              <div className="button" onClick={()=>setContactOpenDeleteModal(!ContactOpenDeleteModal)}>Apagar</div >
+              <div className="button" onClick={()=>setContactIdEditModal(contact.id)}>Editar</div >
+              <div className="button" onClick={()=>setContactIdDeleteModal(contact.id)}>Apagar</div >
             </form>
           </div>
         ))}
       </STYLEDCLIENT>
     ));
 
+
+  const setIdEditModal = (id:string) =>{
+      setActualId(id)
+      setOpenEditModal(!OpenEditModal)
+  }
+   const setIdDeleteModal = (id:string) =>{
+    setActualId(id)
+    setOpenDeleteModal(!OpenDeleteModal)
+  }
+  const setIdAddContact = (id:string)=>{
+    setActualId(id)
+    setOpenAddContactModal(!OpenAddContactModal)
+  }
+  
+  const setContactIdEditModal = (id:string)=>{
+  setActualId(id)
+  setContactOpenEditModal(!ContactOpenEditModal)
+}
+const setContactIdDeleteModal = (id:string)=>{
+  setActualId(id)
+  setContactOpenDeleteModal(!ContactOpenDeleteModal)
+}
+
   return (
     <>
       <CreateModal isModalOpen = {OpenCreateModal} setOpenCreateModal={setOpenCreateModal}/>
-      <EditModal  isModalOpen = {OpenEditModal} setOpenEditModal={setOpenEditModal}/>
-      <DeleteModal   isModalOpen = {OpenDeleteModal} setOpenDeleteModal={setOpenDeleteModal}/>
-      <AddContactModal  isModalOpen = {OpenAddContactModal} setOpenAddContactModal={setOpenAddContactModal}/>
-      <ContactEditModal isModalOpen = {ContactOpenEditModal} setContactOpenEditModal={setContactOpenEditModal}/>
-      <ContactDeleteModal isModalOpen = {ContactOpenDeleteModal} setContactOpenDeleteModal={setContactOpenDeleteModal}/>
+      <EditModal  isModalOpen = {OpenEditModal} setOpenEditModal={setOpenEditModal} id={actualId}/>
+      <DeleteModal isModalOpen = {OpenDeleteModal} setOpenDeleteModal={setOpenDeleteModal} id={actualId}/>
+      <AddContactModal  isModalOpen = {OpenAddContactModal} setOpenAddContactModal={setOpenAddContactModal} id={actualId}/>
+      <ContactEditModal isModalOpen = {ContactOpenEditModal} setContactOpenEditModal={setContactOpenEditModal} id={actualId}/>
+      <ContactDeleteModal isModalOpen = {ContactOpenDeleteModal} setContactOpenDeleteModal={setContactOpenDeleteModal} id={actualId}/>
 
 
       <button className="create" onClick={()=> setOpenCreateModal(!OpenCreateModal)}>
